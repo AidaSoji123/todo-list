@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(230, 231, 247);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #88c5ae;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <title>Signup Page</title>
+</head>
+<body>
+
+  <form id="signupForm" method="post" action="{% url 'app1:signup' %}" name="signupfrm">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+    <button type="button" onclick="register()">Register</button>
+    <p>Already have an account? <a href="{% url 'app1:login'%}">Login</a></p>
+  </form>
+
+  <script>
+    function register() {
+      var name = document.getElementById('name').value;
+      var username = document.getElementById('username').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+
+      // You can add validation logic here
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+      else{
+        signupfrm.submit();
+      }
+      // You can perform further actions, like sending data to a server, etc.
+      // alert("Registration successful!");
+    }
+
+    // function showLogin() {
+    //   alert("Redirecting to login page...");
+    //   window.open({% url 'app1:login' %});
+
+      // You can redirect to the login page or handle the login logic here
+    // }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+  <title>Sign In</title>
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: hsl(0, 23%, 95%);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #signin {
+      align-items: center;
+
+    }
+
+
+    .container {
+      background-color: hsl(202, 28%, 60%);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 16px;
+      padding-right: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .links {
+      margin-top: 16px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0d0e0f;
+      cursor: pointer;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <div class="container">
+    <form id="signinForm" method="post" action="{% url 'app1:login' %}" name="loginfrm">
+      {% csrf_token %}
+      <h2 id="signin">Sign In</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+
+      <div class="links">
+        <a href="{% url 'app1:reset' %}">Forgot Password</a>
+      </div>
+      <br>
+
+      <button type="button" onclick="login()">Login</button>
+      {{msg}}
+      <div class="links">
+        <p>Not a Member?</p>
+        <a href="{% url 'app1:signup' %}" id="register">Register</a> |
+      </div>
+
+    </form>
+
+  </div>
+
+  <script>
+    function login() {
+      //  window.open('index.html')
+      loginfrm.submit();
+    }
+
+    function register() {
+      // Add your registration logic here
+      alert('Register button clicked');
+    }
+
+    function showRegisterForm() {
+      window.open('signup.html')
+    }
+
+    function showForgotPasswordForm() {
+      window.open('reset.html');
+    }
+
+
+  </script>
+</body>
+
+</html>

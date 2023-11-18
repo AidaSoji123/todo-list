@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            align-items: center;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+        .back-btn {
+            background-color: #337ab7;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Details</h1>
+        </header>
+
+        <form method="POST" name="taskform"></form>
+        {% csrf_token %}
+        <br><br><br>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+
+        <label for="duedate">Due Date:</label><br>
+        <input type="date" id="dueDate" name="duedate" required><br><br>
+
+
+        <!-- <a href="{% url 'app1:index' %}"><button class="back-btn">Back</button></a> -->
+        <button class="form-group button" type="submit">submit</button><br>
+
+        <!-- <a href="{% url 'app1:index' %}"></a><br> -->
+        </form>
+        {{message}}
+    </div>
+
+</body>
+
+</html>
