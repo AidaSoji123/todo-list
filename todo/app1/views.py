@@ -41,22 +41,26 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    tasks= TaskList.objects.all()
+    return render(request, 'index.html', {'tasks': tasks})
+
+
 def task(request):
    
     message = ''
     
     if request.method == 'POST':
-        print('hello')
+      
         title = request.POST['title'].lower()
         description = request.POST['description']
         due_date = request.POST['duedate']
-
+    
+        print(description)
         task_exist = TaskList.objects.filter(title = title).exists()
 
         if not task_exist:
-            tasks = TaskList(title = title, description = description, due_date = due_date)
-            tasks.save()
+            task = TaskList(title = title, description = description, due_date = due_date)
+            task.save()
             message = 'task Added'
             
         else:
@@ -67,3 +71,19 @@ def task(request):
 def reset(request):
     
     return render(request, 'reset.html')
+
+def delete_task(request,task_id):
+    task=TaskList.objects.get(id=task_id)
+    task.delete()
+    return redirect ('app1:index')
+
+def update_status(request,task_id):
+    task=TaskList.objects.get(id=task_id)
+    task.status=True
+    task.save()
+    return redirect ('app1:index')
+
+def edit_task(request,task_id):
+    task=TaskList.objects.get(id=task_id)
+    task.save()
+    return redirect ('app1:index')

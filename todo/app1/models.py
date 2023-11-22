@@ -16,6 +16,7 @@ class TaskList(models.Model):
     title = models.CharField(max_length = 20)
     description = models.CharField(max_length = 200)
     due_date = models.DateField()
+    status = models.BooleanField(default = False)
 
     class Meta:
         db_table = 'tasklist_db'
