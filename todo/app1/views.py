@@ -81,6 +81,7 @@ def update_status(request,task_id):
     task=TaskList.objects.get(id=task_id)
     task.status=True
     task.save()
+    print(task)
     return redirect ('app1:index')
 
 def edit_task(request,task_id):

@@ -125,17 +125,19 @@
     </div>
     <div class="container">
         <ul>
-            {% for task in tasks %}
-            <li>
-                <strong>{{ task.title }}</strong>
-                <form action="{% url 'app1:update_status' task.id %}" method="POST" name="completedfrm">
-                    {% csrf_token %}
-                    <span><input type="radio" name="completed"></span>
-                </form>
-                <span><a href="{% url 'app1:delete_task' task.id %}"><button>Delete</button></a></span>
-                <span><a href="{% url 'app1:edit_task' task.id %}"><button>Edit</button></a></span>
-            </li>
-            {% endfor %}
+            <form action="{% url 'app1:index' %}" method="post" name="completedfrm" id="completedfrm">
+                {% csrf_token %}
+                {% for task in tasks %}
+                <li>
+                    <strong>{{ task.title }}</strong>
+
+                    <span><input type="checkbox" name="completed" onchange="task_completed()"></span>
+
+                    <span><a href="{% url 'app1:delete_task' task.id %}">Delete</a></span>
+                    <span><a href="{% url 'app1:task' %}"><button>Edit</button></a></span>
+                </li>
+                {% endfor %}
+            </form>
         </ul>
         <div class="add-task-container">
 
@@ -151,7 +153,11 @@
 
             window.open(login.html)
         }
-    
+        function task_completed() {
+            completed_form = document.getElementsById('completedfrm');
+            completed_form.submit()
+        }
+
     </script>
 
 </body>
